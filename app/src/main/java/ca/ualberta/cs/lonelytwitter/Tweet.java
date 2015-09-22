@@ -60,4 +60,9 @@ public abstract class Tweet {
 
     public abstract Boolean isImporant();
 
+    @Override
+    public String toString() {
+        return date.toString() + " | " + text;
+    }
+
 }
