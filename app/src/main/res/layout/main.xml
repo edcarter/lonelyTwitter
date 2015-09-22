@@ -14,7 +14,7 @@
         android:id="@+id/oldTweetsList"
         android:layout_width="fill_parent"
         android:layout_height="263dp"
-        android:layout_weight="1"
+        android:layout_weight="0.34"
         android:scrollbars="vertical" >
 
     </ListView>
@@ -24,12 +24,19 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello" />
-    
+
     <EditText
         android:id="@+id/body"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:scrollbars="horizontal" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/secondary_activity"
+        android:id="@+id/button"
+        android:onClick="goToSecondaryActivity"/>
 
     <Button
         android:id="@+id/clear"

@@ -13,6 +13,7 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -95,5 +96,10 @@ public class LonelyTwitterActivity extends Activity {
 			// TODO Auto-generated catch block
 			throw new RuntimeException(e);
 		}
+	}
+
+	public void goToSecondaryActivity(View view) {
+		Intent intent = new Intent(this, SecondaryTweetDisplay.class);
+		startActivity(intent);
 	}
 }
