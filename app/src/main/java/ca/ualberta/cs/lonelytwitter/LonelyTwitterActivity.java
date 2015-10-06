@@ -24,7 +24,7 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class LonelyTwitterActivity extends Activity {
+public class LonelyTwitterActivity extends Activity implements MyObserver {
 
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
@@ -48,10 +48,10 @@ public class LonelyTwitterActivity extends Activity {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
-				String text = bodyText.getText().toString();
-				tweets.add(new NormalTweet(text));
-				saveInFile();
-				adapter.notifyDataSetChanged();
+				String text = bodyText.getText().toString(); //move to controller
+				tweets.add(new NormalTweet(text)); //move to contoller
+				saveInFile(); //move to model
+				adapter.notifyDataSetChanged(); //move to view
 			}
 		});
 	}
@@ -60,15 +60,15 @@ public class LonelyTwitterActivity extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		loadFromFile();
+		loadFromFile(); //move to model
 		if (tweets == null) {
 			throw new RuntimeException();
 		}
-		adapter = new ArrayAdapter<Tweet>(this, R.layout.list_item, tweets);
-		oldTweetsList.setAdapter(adapter);
+		adapter = new ArrayAdapter<Tweet>(this, R.layout.list_item, tweets); //move to view
+		oldTweetsList.setAdapter(adapter); //move to view
 	}
 
-	private void loadFromFile() {
+	private void loadFromFile() { //move this whole method to model
 		try {
 			FileInputStream fis = openFileInput(FILENAME);
 			BufferedReader in = new BufferedReader(new InputStreamReader(fis));
@@ -84,7 +84,7 @@ public class LonelyTwitterActivity extends Activity {
 		}
 	}
 	
-	private void saveInFile() {
+	private void saveInFile() { //move this whole method to model
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
 					0);
@@ -98,5 +98,9 @@ public class LonelyTwitterActivity extends Activity {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public void myNotify(MyObservable observable) { //move this to view
+		adapter.notifyDataSetChanged();
 	}
 }
