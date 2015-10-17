@@ -29,6 +29,8 @@ import com.google.gson.reflect.TypeToken;
 
 public class LonelyTwitterActivity extends Activity {
 
+	public static String EDIT_TWEET_POSITION = "asdf";
+	public static String EDIT_TWEET_VIEW_ID = "shhhhh";
 	private static final String FILENAME = "file.sav"; // model
 
 	private LonelyTwitterActivity activity = this;
@@ -69,6 +71,8 @@ public class LonelyTwitterActivity extends Activity {
 		oldTweetsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Intent intent = new Intent(activity, EditTweetActivity.class);
+				intent.putExtra(EDIT_TWEET_VIEW_ID, view.getId());
+				intent.putExtra(EDIT_TWEET_POSITION, position);
 				startActivity(intent);
 			}
 		});

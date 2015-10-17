@@ -1,16 +1,31 @@
 package ca.ualberta.cs.lonelytwitter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 
 public class EditTweetActivity extends Activity {
+
+    private Tweet editTweet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        Integer tweetViewId = intent.getIntExtra(LonelyTwitterActivity.EDIT_TWEET_VIEW_ID, 0);
+        Integer tweetLocaion = intent.getIntExtra(LonelyTwitterActivity.EDIT_TWEET_POSITION, 0);
+        ListView tweetView = (ListView)findViewById(tweetViewId);
+        editTweet = (Tweet) tweetView.getItemAtPosition(tweetLocaion);
         setContentView(R.layout.activity_edit_tweet);
+
+    }
+
+    public Tweet getEditTweet(){
+        return editTweet;
     }
 
     @Override

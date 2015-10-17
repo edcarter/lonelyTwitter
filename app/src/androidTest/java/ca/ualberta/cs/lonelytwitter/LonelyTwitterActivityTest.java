@@ -64,8 +64,7 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 
 
         activity.runOnUiThread(new Runnable() {
             public void run() {
-                View v = oldTweetsList.getChildAt(0);
-                oldTweetsList.performItemClick(v, 0, v.getId());
+                oldTweetsList.performItemClick(oldTweetsList, 0, oldTweetsList.getId());
             }
         });
         getInstrumentation().waitForIdleSync();
